@@ -31,7 +31,15 @@ const App: React.FC = () => {
         setTodos(todos.filter(todo => todo.id !== id))
     }
 
-    const toggleTodo = (id: number): void => {} 
+    const toggleTodo = (id: number): void => {
+        setTodos(todos.map(todo => {
+            if (todo.id !== id) return todo;
+            return {
+                ...todo,
+                complete: !todo.complete
+            }
+        }))
+    } 
 
     useEffect(() => {
         if (inputRef.current) inputRef.current.focus();
